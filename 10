@@ -1,0 +1,16 @@
+import cv2
+import numpy as np
+
+img = cv2.imread("C:/Program Files/opencv/image.png")
+h, w = img.shape[:2]
+
+src = np.float32([[0,0],[w,0],[0,h],[w,h]])
+dst = np.float32([[100,0],[w-100,50],[0,h],[w,h-50]])
+
+H, _ = cv2.findHomography(src, dst)
+result = cv2.warpPerspective(img, H, (w, h))
+
+cv2.imshow("Homography", result)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
