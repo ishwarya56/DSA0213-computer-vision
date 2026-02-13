@@ -1,0 +1,23 @@
+import cv2
+import numpy as np
+
+# Read image
+img = cv2.imread("C:/Program Files/opencv/image.png")
+
+# Convert to grayscale
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# Positive center Laplacian kernel
+kernel = np.array([[0, -1, 0],
+                   [-1,  5, -1],
+                   [0, -1, 0]])
+
+# Apply filter
+sharpened = cv2.filter2D(gray, -1, kernel)
+
+# Display
+cv2.imshow("Original", gray)
+cv2.imshow("Sharpened Image", sharpened)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
