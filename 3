@@ -1,0 +1,25 @@
+import cv2
+
+cap = cv2.VideoCapture(0)
+
+if not cap.isOpened():
+    print("Error: Cannot access webcam.")
+else:
+    print("Press 'q' to quit.")
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        
+        # Slow motion (display frame longer)
+        cv2.imshow("Slow Motion", frame)
+        if cv2.waitKey(150) & 0xFF == ord('q'):  # 150 ms delay → slow
+            break
+
+        # Fast motion (display frame shorter)
+        cv2.imshow("Fast Motion", frame)
+        if cv2.waitKey(30) & 0xFF == ord('q'):   # 30 ms delay → fast
+            break
+
+cap.release()
+cv2.destroyAllWindows()
