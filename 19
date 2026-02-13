@@ -1,0 +1,24 @@
+import cv2
+
+# Read image
+img = cv2.imread("C:/Program Files/opencv/image.png")
+
+# Convert to grayscale
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# Blur the image
+blurred = cv2.GaussianBlur(gray, (5,5), 0)
+
+# Unsharp mask
+mask = cv2.subtract(gray, blurred)
+
+# Sharpened image
+sharpened = cv2.add(gray, mask)
+
+# Display
+cv2.imshow("Original", gray)
+cv2.imshow("Blurred", blurred)
+cv2.imshow("Sharpened (Unsharp Mask)", sharpened)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
