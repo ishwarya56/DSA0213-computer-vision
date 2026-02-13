@@ -1,0 +1,13 @@
+import cv2
+import numpy as np
+
+img = cv2.imread("C:/Program Files/opencv/image.png")
+h, w = img.shape[:2]
+
+M = np.float32([[1, 0, 100], [0, 1, 50]])
+move = cv2.warpAffine(img, M, (w, h))
+
+cv2.imshow("Translated", move)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
