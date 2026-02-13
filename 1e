@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+# Read the image (use raw string for backslashes)
+image = cv2.imread(r"C:/Program Files/opencv/image.png")
+if image is None:
+    print("Error: Image not found or incorrect path.")
+else:
+    # Convert to grayscale
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # Threshold to binary image
+    _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+    # Create a 5x5 kernel for erosion
+    kernel = np.ones((5, 5), np.uint8)
+    # Apply erosion
+    eroded = cv2.erode(binary, kernel, iterations=1)
+    # Show images
+    cv2.imshow("Original Image", image)
+    cv2.imshow("Binary Image", binary)
+    cv2.imshow("Eroded Image", eroded)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
