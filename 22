@@ -1,0 +1,15 @@
+import cv2
+
+img = cv2.imread("C:/Program Files/opencv/image.png")
+
+watermark = img.copy()
+cv2.putText(watermark, "WATERMARK", (50, 50),
+            cv2.FONT_HERSHEY_SIMPLEX, 1,
+            (255, 255, 255), 2)
+
+# Blend original + watermark
+output = cv2.addWeighted(img, 0.8, watermark, 0.2, 0)
+
+cv2.imshow("Watermarked Image", output)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
